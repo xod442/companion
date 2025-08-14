@@ -52,6 +52,5 @@ def api_caller(client, api_method, api_path, api_data=None):
 
         #Process api_data - payload
         response = client.command(api_method=api_method, api_path=api_path, api_data=api_data)
-        results = response['msg']['items']
-
+        results =  response
     return results

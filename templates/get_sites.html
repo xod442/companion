@@ -9,23 +9,31 @@
         <!-- seo fact area start -->
         <div class="card">
               <div class="card-body"
-                <h1>List of Logs</h1>
+                <h1>List of Sites</h1>
                 <div class="data-tables datatable-dark">
                       <table id="example" class="styled-table">
                             <thead class="text-capitalize">
                                 <tr>
-                                    <th>Number</th>
-                                    <th>Log Entry</th>
+                                    <th>Name</th>
+                                    <th>ScopeId</th>
+                                    <th>Address</th>
+                                    <th>City</th>
+                                    <th>Zip Code</th>
+                                    <th>Time Zone</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    {% for log in my_logs %}
+                                    {% for site in sites %}
                                     <tr>
-                                        <td>{{log[0]}}</td>
-                                        <td>{{log[1]}}</td>
+                                        <td>{{site['scopeName']}}</td>
+                                        <td>{{site['scopeId']}}</td>
+                                        <td>{{site['address']}}</td>
+                                        <td>{{site['city']}}</td>
+                                        <td>{{site['zipcode']}}</td>
+                                        <td>{{site['timezone']['timezoneId']}}</td>
                                     </tr>
                                     {% endfor %}
-                                    {{sites}}
+
                                 </tbody>
                         </table>
               </div>

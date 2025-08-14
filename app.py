@@ -130,28 +130,83 @@ def get_sites():
 
 @app.route("/create_site", methods=('GET', 'POST'))
 def create_site():
-    # Get a list of Actions
 
-    # Check user credentials
+    # Present Site Data Entry form
     return render_template('create_site.html')
 
 @app.route("/add_site", methods=('GET', 'POST'))
 def add_site():
-    # Get a list of Actions
+    # Process site data form elements
+    if request.method == 'POST':
+        timezone = request.form['timezone'].replace('"', "")
+        timezoneId, timezoneName = timezone.split('-')
+
+        timezone = {
+            "timezoneId": timezoneId,
+            "timezoneName": timezoneName,
+            "rawOffset": -21600000
+        }
+
+        api_data = {
+            "name": request.form['name'].replace('"', ""),
+            "address": request.form['address'].replace('"', ""),
+            "city": request.form['city'].replace('"', ""),
+            "state": request.form['state'].replace('"', ""),
+            "zipcode": request.form['zipcode'].replace('"', ""),
+            "timezone": timezone,
+            "country": request.form['country'].replace('"', "")
+            }
+
+        client = get_client()
+
+        api_method = "POST"
+
+        api_path="network-config/v1alpha1/sites"
+
+        new_site = api_caller(client,api_method,api_path,api_data)
 
     # Check user credentials
-    return render_template('add_site.html')
+    message = new_site
+    return render_template('home.html', message=message)
 
 @app.route("/update_site", methods=('GET', 'POST'))
 def update_site():
     # This is the site chooser
+    client = get_client()
 
-    # Get list of sites and make a list of the names
+    api_method = "GET"
 
-    return render_template('update_site.html')
+    api_path="network-config/v1alpha1/sites"
 
+    sites = api_caller(client,api_method,api_path)
+
+    return render_template('update_site.html', sites=sites)
+
+@app.route("/site_update", methods=('GET', 'POST'))
+def site_update():
+    # This is route write the update to central
+
+
+    message = 'scobby'
+    return render_template('home.html', message=message)
 
 @app.route("/delete_site", methods=('GET', 'POST'))
 def delete_site():
+    # This is the site chooser
+    client = get_client()
 
-    return render_template('delete_site.html')
+    api_method = "GET"
+
+    api_path="network-config/v1alpha1/sites"
+
+    sites = api_caller(client,api_method,api_path)
+
+
+    return render_template('delete_site.html', sites=sites)
+
+
+@app.route("/site_delete", methods=('GET', 'POST'))
+def site_delete():
+    # This deletes the site from Central
+    message ='gork'
+    return render_template('home.html', message=message)

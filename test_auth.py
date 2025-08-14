@@ -1,15 +1,15 @@
 import requests
-from pycentral.base import ArubaCentralBase
-from utility.central_info import central_info
+from pycentral import NewCentralBase
+from utility.token_info import token_info
 import json
 
 
-global central_info
+global token_info
 
 print(f"This is central_info: ")
-print(central_info)
+print(token_info)
 print('-----------------------------------------------------')
-client = ArubaCentralBase(central_info=central_info)
+client = NewCentralBase(token_info=token_info)
 
 
 print(client)
