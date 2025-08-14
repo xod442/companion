@@ -149,12 +149,12 @@ def add_site():
 
         api_data = {
             "name": request.form['name'].replace('"', ""),
-            "address": request.form['address'].replace('"', ""),
             "city": request.form['city'].replace('"', ""),
             "state": request.form['state'].replace('"', ""),
+            "country": request.form['country'].replace('"', ""),
             "zipcode": request.form['zipcode'].replace('"', ""),
+            "address": request.form['address'].replace('"', ""),
             "timezone": timezone,
-            "country": request.form['country'].replace('"', "")
             }
 
         client = get_client()
@@ -167,6 +167,7 @@ def add_site():
 
     # Check user credentials
     message = new_site
+
     return render_template('home.html', message=message)
 
 @app.route("/update_site", methods=('GET', 'POST'))
