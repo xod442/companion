@@ -1,0 +1,9 @@
+flask
+pytest
+PyMongo
+pycentral==2.0a8
+oauthlib
+pytz
+PyYAML
+requests
+requests_oauthlib
