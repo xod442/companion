@@ -45,6 +45,7 @@ import uuid
 from jinja2 import Environment, FileSystemLoader
 from utility.get_client_api import get_client
 from utility.api_caller import api_caller
+import json
 
 #
 app = Flask(__name__)
@@ -187,9 +188,58 @@ def update_site():
 def site_update():
     # This is route write the update to central
 
+    api_path="network-config/v1alpha1/sites"
+    api_method = "PUT"
 
-    message = 'scobby'
+    if request.method == 'POST':
+        scopeName = request.form['scopeName'].replace('"', "")
+
+        # This is the site chooser
+        client = get_client()
+
+        api_method = "GET"
+
+        api_path="network-config/v1alpha1/sites"
+
+        sites = api_caller(client,api_method,api_path)
+
+        for site in sites:
+
+            if str(site['scopeName']) == str(scopeName):
+
+                return render_template('update.html', site=site)
+
+@app.route("/update", methods=('GET', 'POST'))
+def update():
+
+    timezone = request.form['timezone']
+    json_acceptable_string = timezone.replace("'", "\"")
+    timezone = json.loads(json_acceptable_string)
+
+
+    api_data = {
+        "scopeId": request.form['scopeId'].replace('"', ""),
+        "name": request.form['name'].replace('"', ""),
+        "city": request.form['city'].replace('"', ""),
+        "state": request.form['state'].replace('"', ""),
+        "country": request.form['country'].replace('"', ""),
+        "zipcode": request.form['zipcode'].replace('"', ""),
+        "address": request.form['address'].replace('"', ""),
+        "timezone": timezone
+        }
+
+    client = get_client()
+
+    api_method = "PUT"
+
+    api_path="network-config/v1alpha1/sites"
+
+    new_site = api_caller(client,api_method,api_path,api_data)
+
+    # Return Message
+    message = new_site
     return render_template('home.html', message=message)
+
 
 @app.route("/delete_site", methods=('GET', 'POST'))
 def delete_site():
@@ -202,12 +252,36 @@ def delete_site():
 
     sites = api_caller(client,api_method,api_path)
 
+    list_of_sites = []
 
-    return render_template('delete_site.html', sites=sites)
+    for site in sites:
+        entry = site['scopeName'] + '*' + site['scopeId']
+        list_of_sites.append(entry)
+
+
+    return render_template('delete_site.html', sites=list_of_sites)
 
 
 @app.route("/site_delete", methods=('GET', 'POST'))
 def site_delete():
-    # This deletes the site from Central
-    message ='gork'
+    # Send up the warning flares
+    name, id = request.form['scopeName'].split('*')
+    return render_template('delete.html', scopeId=id)
+
+@app.route("/delete", methods=('GET', 'POST'))
+def delete():
+
+    client = get_client()
+    scopeId = request.form['scopeId']
+
+    api_data = {
+        "scopeId": scopeId
+    }
+    api_path="network-config/v1alpha1/sites"
+    api_method = "DELETE"
+    
+    response = api_caller(client,api_method,api_path,api_data)
+
+    # Return Message
+    message = response
     return render_template('home.html', message=message)

@@ -7,20 +7,19 @@
 
             <div class="row mt-50">
                 <div class="col-md-8 col-md-offset-2">
-                    <h2 class="text-center heading-separator" style="color:white">Choose a Site</h2>
+                    <h2 class="text-center heading-separator" style="color:white">Choose a Site to Delete</h2>
                     <form method="POST" action="{{ url_for('.site_delete')}}">
                       <div class="col-sm-4">
-                        <label for="sitename" style="color:white">Name:</label>
+                        <label for="scopeName" style="color:white">Name:</label>
                           <select class="selectpicker" name="scopeName">
                               <option>unselected</option>
                               {% for site in sites %}
-                                  <option>{{ site['scopeName'] }}</option>
+                                  <option>{{site}}</option>
                               {% endfor %}
                           </select>
                           <div>
                           </div>
                       </div>
-
                         <div class="text-center mt-20">
                             <button class="btn btn-green">DELETE SITE</button>
                         </div>

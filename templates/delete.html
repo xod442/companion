@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+            <div class="container">
+
+
+                <div class="row mt-50">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h2 class="text-center heading-separator" style="color:white">Companion</h2>
+                          <h2 style="color:white">Delete Site!!!!</h2>
+                        <form method="POST" action="{{ url_for('.delete')}}">
+                            <div class="row" style="color:white">
+                                <h3 style="color:red"> You are about to delete a site from HPE Networking Central </h3>
+                                <p style="color:red">Proceed with caution!! You've been warned!</p>
+                            </div>
+                            <div>
+                                  <input type="text" hidden value="{{scopeId}}" name="scopeId">
+                            <div class="text-center mt-20">
+                                <button class="btn btn-red">DELETE SITE</button>
+                            </div>
+                        </form>
+                        <HR>
+                    </div>
+                </div><!-- /.form -->
+
+{% endblock %}

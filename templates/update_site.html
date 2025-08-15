@@ -7,7 +7,7 @@
 
             <div class="row mt-50">
                 <div class="col-md-8 col-md-offset-2">
-                    <h2 class="text-center heading-separator" style="color:white">Choose a Site</h2>
+                    <h2 class="text-center heading-separator" style="color:white">Choose a Site to Update</h2>
                     <form method="POST" action="{{ url_for('.site_update')}}">
                       <div class="col-sm-4">
                         <label for="scopeName" style="color:white">Name:</label>
@@ -17,18 +17,7 @@
                                   <option>{{ site['scopeName'] }}</option>
                               {% endfor %}
                           </select>
-                          <div>
-                            <label for="item" style="color:white">item:</label>
-                              <select class="selectpicker" name="item">
-                                  <option>unselected</option>
-                                  <option>scopeName</option>
-                                    <option>address</option>
-                                      <option>city</option>
-                                        <option>state</option>
-                                          <option>zipcode</option>
-                              </select>
-                          </div>
-                      </div>
+
 
                         <div class="text-center mt-20">
                             <button class="btn btn-green">UPDATE SITE</button>

@@ -5,42 +5,30 @@
 
 {% block content %}
 
-        <div class="col-lg-8">
-                <!-- seo fact area start -->
-                <div class="card">
-                      <div class="card-body"
-                        <h1>List of Action Items</h1>
-                        <div class="data-tables datatable-dark">
-                              <table id="example" class="styled-table">
-                                    <thead class="text-capitalize">
-                                        <tr>
-                                            <th>Number</th>
-                                            <th>Company</th>
-                                            <th>Action</th>
-                                            <th>Status</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for action in my_actions %}
-                                            <tr>
-                                                <td>{{action[0]}}</td>
-                                                <td>{{action[1]}}</td>
-                                                <td>{{action[2]}}</td>
-                                                <td>{{action[3]}}</td>
-                                            </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                </table>
-                      </div>
-                </div>
-        </div>
-</div>
 <div class="col-sm-6">
     <div class="form-group">
       <label for="message" style="color:white">System Message:</label>
       <input type="text" readonly class="form-control" id="message" name="message" placeholder="{{ message }}">
     </div>
 </div>
+
+        <div class="col-lg-8">
+                <!-- seo fact area start -->
+                <div class="card">
+                      <div class="card-body"
+                        <h1 style="color:white">Fuctions of this application</h1><br>
+                         <p>1. Get sites, an example of HTTP GET<br>
+                         2. Create site, an example of HTTP POST<br>
+                         3. Update site, an example of HTTP PUT<br>
+                         4. Delete site, an example of HTTP Delete</p>
+
+                        <p> With these four functions you can implement C.R.U.D. functions in Central.</p>
+
+                        <p> Use the dropdown <bold>Actions</bold> menu and choose a function</p>
+                </div>
+        </div>
+
+
 
 
       <script type="text/javascript">

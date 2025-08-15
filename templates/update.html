@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% include "navbar.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row mt-50">
+        <div class="col-md-8 col-md-offset-2">
+            <h2 class="text-center heading-separator" style="color:white">Update Site Information</h2>
+            <form method="POST" action="{{ url_for('.update')}}">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                          <label for="list_company" style="color:white">Name:</label>
+                          <input type="text" value="{{site['scopeName']}}" class="form-control" id="name" name="name">
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                          <label for="address" style="color:white">Address:</label>
+                          <input type="text" value="{{site['address']}}" class="form-control" id="address" name="address">
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                          <label for="city" style="color:white">City:</label>
+                          <input type="text" value="{{site['city']}}" class="form-control" id="city" name="city">
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                          <label for="state" style="color:white">State:</label>
+                          <input type="text" value="{{site['state']}}" class="form-control" id="state" name="state">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                          <label for="zipcode" style="color:white">Zip:</label>
+                          <input type="text" value="{{site['zipcode']}}" class="form-control" id="zipcode" name="zipcode">
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                          <label for="zipcode" style="color:white">Country:</label>
+                          <input type="text" value="{{site['country']}}" class="form-control" id="country" name="country">
+                        </div>
+                    </div>
+                     <input type="text" hidden value="{{ site['timezone'] }}" name="timezone">
+                     <input type="text" hidden value="{{ site['scopeId'] }}" name="scopeId">
+                    <hr>
+                    <br>
+
+
+                <div class="text-center mt-20">
+                    <button class="btn btn-green">Update Site Info</button>
+                </div>
+            </form>
+        </div>
+    </div><
+
+
+  {% endblock %}
